@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrar Devolução</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<h2>Registrar Devolução</h2>
+
+<p><strong>Cliente:</strong> {{ entrega.cliente }}</p>
+<p><strong>Produto:</strong> {{ entrega.produto }}</p>
+
+<p>🧊 Isopor pendente: {{ entrega.isopor_pendente }}</p>
+<p>🍺 Casco pendente: {{ entrega.casco_pendente }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Isopor devolvido:</label><br>
+    <input type="number" name="isopor_devolvido"><br><br>
+
+    <label>Casco devolvido:</label><br>
+    <input type="number" name="casco_devolvido"><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="/entregas/">Voltar</a>
+
+</body>
+</html>
+{% endblock %}

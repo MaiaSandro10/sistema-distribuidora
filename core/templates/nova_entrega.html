@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.cliente.label }} {{ form.cliente }}<br><br>
+    {{ form.produto.label }} {{ form.produto }}<br><br>
+    {{ form.quantidade.label }} {{ form.quantidade }}<br><br>
+    {{ form.data_entrega.label }} {{ form.data_entrega }}<br><br>
+
+    <h4>Controle de Itens</h4>
+
+    {{ form.isopor_enviado.label }} {{ form.isopor_enviado }}<br><br>
+    {{ form.casco_enviado.label }} {{ form.casco_enviado }}<br><br>
+
+    {{ form.status.label }} {{ form.status }}<br><br>
+
+    {{ form.foto_isopor.label }} {{ form.foto_isopor }}<br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}

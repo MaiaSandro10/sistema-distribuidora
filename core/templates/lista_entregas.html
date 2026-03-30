@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Entregas{% endblock %}
+
+{% block content %}
+
+<h2>📦 Entregas Pendentes</h2>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Data</th>
+        <th>Ação</th>
+        <th>Isopor</th>
+        <th>Casco</th>
+        <th>Falta Devolver</th>
+    </tr>
+
+    {% for entrega in pendentes %}
+    <tr>
+        <td>{{ entrega.cliente }}</td>
+        <td>{{ entrega.produto }}</td>
+        <td>{{ entrega.quantidade }}</td>
+        <td>{{ entrega.data_entrega }}</td>
+
+        <td>
+            <a href="/entregas/devolucao/{{ entrega.id }}/" class="btn btn-primary btn-sm">
+                Registrar Devolução
+            </a>
+        </td>
+
+        <td>{{ entrega.isopor_enviado }}</td>
+        <td>{{ entrega.casco_enviado }}</td>
+
+        <td>
+            🧊 {{ entrega.isopor_pendente }} |
+            🍺 {{ entrega.casco_pendente }}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8">Nenhuma pendência</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<h2 class="mt-5">✅ Entregas Concluídas</h2>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Data</th>
+        <th>Foto</th>
+    </tr>
+
+    {% for entrega in concluidas %}
+    <tr>
+        <td>{{ entrega.cliente }}</td>
+        <td>{{ entrega.produto }}</td>
+        <td>{{ entrega.quantidade }}</td>
+        <td>{{ entrega.data_entrega }}</td>
+
+        <td>
+            {% if entrega.foto_isopor %}
+                <img src="{{ entrega.foto_isopor.url }}" width="80">
+            {% else %}
+                Sem foto
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">Nenhuma entrega concluída</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/" class="btn btn-secondary mt-3">Voltar</a>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Sistema{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🚚 Distribuidora</h2>
+
+    <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+    <a href="{% url 'lista_clientes' %}">👤 Clientes</a>
+    <a href="{% url 'lista_entregas' %}">📦 Entregas</a>
+</div>
+
+<div class="main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

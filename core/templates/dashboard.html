@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<div class="cards">
+    <div class="card">
+        <h3>📦 Entregas Pendentes</h3>
+        <p>{{ pendentes }}</p>
+    </div>
+
+    <div class="card">
+        <h3>🧊 Isopores Pendentes</h3>
+        <p>{{ isopor_total }}</p>
+    </div>
+
+    <div class="card">
+        <h3>🍺 Cascos Pendentes</h3>
+        <p>{{ casco_total }}</p>
+    </div>
+</div>
+<a href="{% url 'nova_entrega' %}" class="btn btn-primary">➕ Nova Entrega</a>
+<a href="{% url 'cadastrar_cliente' %}" class="btn btn-success">👤 Novo Cliente</a>
+
+{% endblock %}
